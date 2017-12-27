@@ -7,7 +7,7 @@ robot.canvas = document.createElement('canvas');
 robot.HCELLS = 10;
 robot.VCELLS = 10;
 robot.CELL_SIZE = 50;
-robot.WALL_SIZE = 4;
+robot.WALL_SIZE = 6;
 robot.cells = {};
 robot.walls={};
 
@@ -56,7 +56,7 @@ robot.draw = function() {
 	
 	for (i in robot.cells) {
 		var cell = robot.cells[i];
-		ctx.fillStyle=(cell.isFail)?'Red':(cell.isFill)?'Gray':'Lime';
+		ctx.fillStyle=(cell.isFail)?'#F44336':(cell.isFill)?'#9E9E9E':'#8BC34A';
 		ctx.fillRect(cell.left,cell.top,robot.CELL_SIZE,robot.CELL_SIZE);
 	}
 
@@ -64,7 +64,7 @@ robot.draw = function() {
 	
 	for (i in robot.walls) {
 		var wall = robot.walls[i];
-		ctx.fillStyle = (wall.isActive||wall.isHover)?'Orange':'LimeGreen'; 
+		ctx.fillStyle = (wall.isActive||wall.isHover)?'#FFD54F':'#4CAF50';
 		ctx.fillRect(wall.left,wall.top,wall.width,wall.height);
 	}
 }
@@ -116,6 +116,7 @@ robot.moveRobot = function(x,y) {
 
 robot.paint = function() {
 	robot.cells[robot.y+'_'+robot.x].isFill=true;
+    setTimeout(robot.draw,20);
 }
 
 //функции проверки на закрашенность и наличие стен
