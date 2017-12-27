@@ -105,7 +105,7 @@ robot.canvas.ondblclick = function(e) {
 		var x = e.offsetX - cell.left;
 		var y = e.offsetY - cell.top;
 		if ((x>0)&&(x<robot.CELL_SIZE)&&(y>0)&&(y<robot.CELL_SIZE)) {
-			robot.moveRobot(cell.x,cell.y);
+			robot.setPosition(cell.x,cell.y);
 		}
 	}
 }
@@ -121,6 +121,12 @@ robot.moveRobot = function(x,y) {
     robot.tick += 100
 
 }
+
+robot.setPosition = function (x,y) {
+	robot.x = x;
+	robot.y = y;
+    robot.draw();
+};
 
 robot.paint = function() {
 	robot.cells[robot.y+'_'+robot.x].isFill=true;
